@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
+import wovenLogo from '../dist/assets/images/WOVEN Color 1.png';
 
 
 const navItems = [
@@ -11,7 +12,7 @@ const navItems = [
 ];
 
 export function Logo() {
-  return <span className="brand"><span className="brand-mark">✦</span><span>woven</span></span>;
+  return <span className="logo" aria-label="Woven"><img src={wovenLogo} alt="Woven" /></span>;
 }
 
 export function Layout({ children }) {
@@ -36,7 +37,7 @@ export function Layout({ children }) {
         </nav>
         <div className="nav-actions">
           <button className="button button-ghost desktop-only" onClick={() => window.alert('Sign in is coming soon.')}>Sign in</button>
-          <button className="button button-primary" onClick={() => navigate('/pricing')}>Get started <span aria-hidden="true">↗</span></button>
+          <button className="button button-primary" onClick={() => navigate('/pricing')}>Get started <span aria-hidden="true"></span></button>
           <button className="theme-toggle" type="button" aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`} onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}><span aria-hidden="true">{theme === 'dark' ? '☼' : '☾'}</span></button>
           <button className="menu-button" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? '×' : '☰'}</button>
         </div>

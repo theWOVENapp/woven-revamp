@@ -117,7 +117,7 @@ const AboutPage = () => {
       </section>
 
       {/* Roadmap */}
-      <section className="about-roadmap">
+      {/* <section className="about-roadmap">
         <h2>Product Roadmap</h2>
         <div className="roadmap-grid">
           {roadmap.map((item) => (
@@ -130,7 +130,7 @@ const AboutPage = () => {
             </article>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Leadership */}
       <section className="about-leadership">
@@ -164,7 +164,7 @@ const AboutPage = () => {
       </section>
 
       {/* Corporate Info */}
-      <section className="about-corporate">
+      {/* <section className="about-corporate">
         <h2>Corporate Information</h2>
         <div className="corporate-grid">
           {corporateInfo.map((item) => (
@@ -174,7 +174,7 @@ const AboutPage = () => {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Careers */}
       <section className="about-careers">

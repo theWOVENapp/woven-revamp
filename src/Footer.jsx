@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom';
+import wovenLogo from '../dist/assets/images/WOVEN Color 1.png';
 
 const Footer = () => {
   return (
     <footer className="site-footer expanded-footer">
       <div className="footer-grid">
         <div>
-          <NavLink to="/" className="logo-link" aria-label="Woven home"><span className="brand"><span className="brand-mark">✦</span><span>woven</span></span></NavLink>
+          <NavLink to="/" className="logo-link" aria-label="Woven home"><span className="logo" aria-label="Woven"><img src={wovenLogo} alt="Woven" /></span></NavLink>
           <p className="footer-description">Connecting your brand narrative across the digital landscape with editorial precision.</p>
         </div>
 

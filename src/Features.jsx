@@ -42,19 +42,19 @@ export default function Features() {
         <span className="feature-icon">#</span>
         <h3>Smart tags</h3>
         <p>Reach your niche with AI-curated hashtags that actually work.</p>
-        <a href="#analytics">Learn about Woven AI ↗</a>
+        <a href="#analytics">Learn about Woven AI</a>
       </article>
       <article className="feature-card feature-card-dark">
         <span className="feature-icon">✦</span>
         <h3>Caption gen</h3>
         <p>Context-aware copy that sounds like your brand, not a bot.</p>
-        <a href="#analytics">Learn about Woven AI ↗</a>
+        <a href="#analytics">Learn about Woven AI</a>
       </article>
       <article className="feature-card feature-card-wide">
         <span className="eyebrow">Woven AI</span>
         <h3>Ignite your voice with the creative studio.</h3>
         <p>Woven learns your unique tone and helps craft captions, threads, and tags that resonate.</p>
-        <a href="#analytics">Learn about Woven AI ↗</a>
+        <a href="#analytics">Learn about Woven AI </a>
       </article>
     </section>
 

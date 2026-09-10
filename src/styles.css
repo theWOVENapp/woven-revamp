@@ -98,7 +98,24 @@ a { color: inherit; }
   background: linear-gradient(135deg, var(--teal), var(--orange));
   font-size: 18px;
 }
+.logo {
+  width: 116px;
+  height: 38px;
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
 
+.logo img {
+  position: absolute;
+  width: 184px;
+  max-width: none;
+  height: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+}
 /* ---- Nav Links ---- */
 .nav-links {
   display: flex;
