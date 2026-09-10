@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>re. · weave · pricing (₦)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #080c14;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 1.5rem;
+            line-height: 1.4;
+            color: #eef2f8;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            margin-bottom: 3rem;
+            background: rgba(12, 22, 34, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 80px;
+            border: 1px solid rgba(64, 224, 208, 0.06);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            animation: fadeDown 0.8s ease-out;
+        }
+
+        @keyframes fadeDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .navbar-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-logo:hover {
+            transform: scale(1.02);
+        }
+
+        .navbar-logo .logo-icon {
+            width: 2.6rem;
+            height: 2.6rem;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #40e0d0, #f2994a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #0b1119;
+            box-shadow: 0 4px 16px rgba(64, 224, 208, 0.25);
+        }
+
+        .navbar-logo .logo-text {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            background: linear-gradient(145deg, #ffffff, #b8dae6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .navbar-links {
+            display: none;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .navbar-link {
+            position: relative;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #8a9bb5;
+            text-decoration: none;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            font-family: inherit;
+            transition: color 0.3s ease;
+            padding: 0.25rem 0;
+        }
+
+        .navbar-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #40e0d0, #f2994a);
+            transition: width 0.3s ease;
+        }
+
+        .navbar-link:hover {
+            color: #e0edf2;
+        }
+
+        .navbar-link:hover::after {
+            width: 100%;
+        }
+
+        .navbar-link.active {
+            color: #f2994a;
+        }
+
+        .navbar-link.active::after {
+            width: 100%;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-signin {
+            height: 2.4rem;
+            border-radius: 40px;
+            border: 1px solid rgba(64, 224, 208, 0.15);
+            background: transparent;
+            padding: 0 1.5rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #b0c8d8;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-signin:hover {
+            border-color: rgba(64, 224, 208, 0.4);
+            background: rgba(64, 224, 208, 0.05);
+            color: #e0f2f5;
+            transform: translateY(-2px);
+        }
+
+        .btn-getstarted {
+            height: 2.4rem;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #40e0d0, #2ab8a8);
+            padding: 0 1.5rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #0b1119;
+            border: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: inherit;
+            box-shadow: 0 4px 16px rgba(64, 224, 208, 0.2);
+        }
+
+        .btn-getstarted:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 28px rgba(64, 224, 208, 0.35);
+        }
+
+        .navbar-mobile-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: #b0c8d8;
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+
+        /* ===== PRICING HERO ===== */
+        .pricing-hero {
+            max-width: 56rem;
+            margin: 0 auto 2rem;
+            padding: 0 1rem 0.75rem;
+            text-align: center;
+            animation: fadeUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pricing-hero h1 {
+            font-size: clamp(2.2rem, 5.8vw, 4rem);
+            font-weight: 900;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            background: linear-gradient(145deg, #ffffff, #b8dae6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .pricing-hero h1 .highlight {
+            background: linear-gradient(135deg, #f2994a, #e67e22);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* ===== MAIN PRICING GRID ===== */
+        .pricing-plans {
+            max-width: 80rem;
+            margin: 0 auto 2rem;
+            padding: 0 0.25rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        /* ===== SLIDER SECTION ===== */
+        .slider-section {
+            background: rgba(16, 30, 42, 0.25);
+            backdrop-filter: blur(8px);
+            border-radius: 34px;
+            padding: 2rem 2rem 2.5rem;
+            border: 1px solid rgba(64, 224, 208, 0.04);
+            animation: fadeUp 1s ease-out 0.4s both;
+            transition: all 0.3s ease;
+        }
+
+        .slider-section:hover {
+            border-color: rgba(64, 224, 208, 0.06);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .slider-header h2 {
+            font-size: clamp(1.4rem, 2vw, 1.8rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            background: linear-gradient(145deg, #ffffff, #b8dae6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .slider-readouts {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .readout-group {
+            text-align: right;
+        }
+
+        .readout-group .label {
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #94b8c9;
+        }
+
+        .readout-group .value {
+            font-size: clamp(1.4rem, 2.2vw, 2rem);
+            font-weight: 900;
+            color: #f2994a;
+            transition: all 0.3s ease;
+            min-width: 5rem;
+            display: inline-block;
+        }
+
+        .readout-group .value.credits {
+            color: #40e0d0;
+        }
+
+        /* ===== HORIZONTAL SLIDER ===== */
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem 0 0.5rem;
+            width: 100%;
+        }
+
+        .slider-track-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+            padding: 0 1.5rem;
+        }
+
+        .slider-track {
+            position: relative;
+            width: 100%;
+            height: 0.5rem;
+            background: rgba(64, 224, 208, 0.06);
+            border-radius: 20px;
+            cursor: pointer;
+            touch-action: none;
+        }
+
+        .slider-track-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #f2994a, #40e0d0);
+            border-radius: 20px;
+            transition: width 0.15s ease-out;
+        }
+
+        /* Tick marks below track */
+        .tick-marks-horizontal {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 600px;
+            padding: 0 1.5rem;
+            margin-top: 0.25rem;
+            pointer-events: none;
+        }
+
+        .tick-marks-horizontal .tick {
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: #5a7a8a;
+            transition: color 0.3s ease;
+            text-align: center;
+            min-width: 2.5rem;
+        }
+
+        .tick-marks-horizontal .tick.active {
+            color: #40e0d0;
+        }
+
+        .tick-marks-horizontal .tick::before {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 0.5rem;
+            background: rgba(64, 224, 208, 0.15);
+            margin: 0 auto 0.3rem;
+            transition: background 0.3s ease;
+        }
+
+        .tick-marks-horizontal .tick.active::before {
+            background: #40e0d0;
+        }
+
+        /* Custom Thumb */
+        .slider-thumb {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 2.8rem;
+            height: 2.8rem;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #40e0d0, #1a5a5a);
+            border: 2px solid rgba(64, 224, 208, 0.3);
+            box-shadow: 0 0 30px rgba(64, 224, 208, 0.15), inset 0 -2px 8px rgba(0, 0, 0, 0.3);
+            cursor: grab;
+            touch-action: none;
+            transition: box-shadow 0.3s ease, transform 0.15s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0b1119;
+            font-size: 1.2rem;
+            z-index: 10;
+            left: 25%;
+        }
+
+        .slider-thumb:hover {
+            box-shadow: 0 0 40px rgba(64, 224, 208, 0.25), inset 0 -2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider-thumb:active {
+            cursor: grabbing;
+            transform: translate(-50%, -50%) scale(0.92);
+        }
+
+        .slider-thumb i {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Hidden range input */
+        .slider-input-wrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .slider-input-wrap input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+        }
+
+        .slider-input-wrap input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 2.8rem;
+            height: 2.8rem;
+            border-radius: 50%;
+            background: transparent;
+            cursor: grab;
+            border: none;
+        }
+
+        .slider-input-wrap input[type="range"]::-moz-range-thumb {
+            width: 2.8rem;
+            height: 2.8rem;
+            border-radius: 50%;
+            background: transparent;
+            cursor: grab;
+            border: none;
+        }
+
+        .slider-input-wrap input[type="range"]:active::-webkit-slider-thumb {
+            cursor: grabbing;
+        }
+
+        .slider-input-wrap input[type="range"]:active::-moz-range-thumb {
+            cursor: grabbing;
+        }
+
+        /* ===== WEAVE ANIMATION ===== */
+        .weave-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            background: rgba(64, 224, 208, 0.02);
+            border: 1px solid rgba(64, 224, 208, 0.02);
+        }
+
+        .weave-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+            background: #40e0d0;
+            animation: weaveSpin 3s ease-in-out infinite;
+        }
+
+        .weave-dot:nth-child(2) {
+            animation-delay: 0.4s;
+            background: #f2994a;
+        }
+        .weave-dot:nth-child(3) {
+            animation-delay: 0.8s;
+            background: #40e0d0;
+        }
+        .weave-dot:nth-child(4) {
+            animation-delay: 1.2s;
+            background: #f2994a;
+        }
+        .weave-dot:nth-child(5) {
+            animation-delay: 1.6s;
+            background: #40e0d0;
+        }
+        .weave-dot:nth-child(6) {
+            animation-delay: 2.0s;
+            background: #f2994a;
+        }
+        .weave-dot:nth-child(7) {
+            animation-delay: 2.4s;
+            background: #40e0d0;
+        }
+        .weave-dot:nth-child(8) {
+            animation-delay: 2.8s;
+            background: #f2994a;
+        }
+
+        @keyframes weaveSpin {
+            0%,
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 0.4;
+            }
+            50% {
+                transform: scale(1.8) translateY(-6px);
+                opacity: 1;
+            }
+        }
+
+        .weave-label {
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: #5a7a8a;
+            letter-spacing: 0.1em;
+            margin-left: 0.5rem;
+        }
+
+        /* ===== SUBSCRIPTION CARDS ===== */
+        .plans-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.875rem;
+            margin-top: 1.5rem;
+        }
+
+        .plan-card {
+            border-radius: 22px;
+            border: 1px solid rgba(64, 224, 208, 0.04);
+            background: rgba(16, 30, 42, 0.25);
+            backdrop-filter: blur(4px);
+            padding: 0.875rem 1.125rem 1rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: cardSlide 0.8s ease-out both;
+        }
+
+        .plan-card:nth-child(1) {
+            animation-delay: 0.6s;
+        }
+        .plan-card:nth-child(2) {
+            animation-delay: 0.8s;
+        }
+        .plan-card:nth-child(3) {
+            animation-delay: 1.0s;
+        }
+
+        @keyframes cardSlide {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .plan-card:hover {
+            transform: translateY(-3px) scale(1.01);
+            border-color: rgba(64, 224, 208, 0.08);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        .plan-card.featured {
+            position: relative;
+            border: 2px solid rgba(242, 153, 74, 0.3);
+            background: linear-gradient(145deg, #1a234e, #131b3a);
+            box-shadow: 0 8px 0 rgba(242, 153, 74, 0.15);
+        }
+
+        .plan-card.featured .featured-badge {
+            position: absolute;
+            top: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 40px;
+            background: linear-gradient(135deg, #f2994a, #d97a2a);
+            padding: 0.375rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: #0b1119;
+        }
+
+        .plan-card .plan-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .plan-card .plan-header h3 {
+            font-size: clamp(1.25rem, 1.6vw, 1.4rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: #e0edf2;
+        }
+
+        .plan-card .plan-header .price {
+            padding-top: 0.25rem;
+            font-size: clamp(1.125rem, 1.4vw, 1.25rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: #f2994a;
+            transition: color 0.3s;
+        }
+
+        .plan-card .plan-sub {
+            margin-top: 0.375rem;
+            font-size: clamp(0.875rem, 1vw, 0.95rem);
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: #b0c8d8;
+        }
+
+        .plan-card .plan-features {
+            margin-top: 0.625rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+            font-size: clamp(0.875rem, 1vw, 0.95rem);
+            font-weight: 700;
+            line-height: 1.16;
+            letter-spacing: -0.02em;
+            color: #c8d4ee;
+        }
+
+        .plan-card .plan-features li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .plan-card .plan-features li::before {
+            content: '✓';
+            color: #40e0d0;
+            font-weight: 900;
+            font-size: 0.8rem;
+        }
+
+        .plan-card .plan-action {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .plan-card .plan-action button {
+            height: 1.875rem;
+            padding: 0 1.125rem;
+            border-radius: 40px;
+            font-size: 0.875rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .plan-card .plan-action .btn-outline {
+            border: 1px solid rgba(242, 153, 74, 0.3);
+            background: transparent;
+            color: #f2994a;
+        }
+
+        .plan-card .plan-action .btn-outline:hover {
+            background: rgba(242, 153, 74, 0.08);
+            border-color: rgba(242, 153, 74, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .plan-card .plan-action .btn-solid {
+            border: none;
+            background: linear-gradient(135deg, #f2994a, #d97a2a);
+            color: #0b1119;
+        }
+
+        .plan-card .plan-action .btn-solid:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(242, 153, 74, 0.3);
+        }
+
+        .plan-card .plan-action .btn-dark {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: transparent;
+            color: #b0c8d8;
+        }
+
+        .plan-card .plan-action .btn-dark:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ===== CREDIT PACKS (RIGHT) ===== */
+        .credit-packs {
+            background: rgba(16, 30, 42, 0.25);
+            backdrop-filter: blur(8px);
+            border-radius: 34px;
+            padding: 2rem 2rem 2.5rem;
+            border: 1px solid rgba(64, 224, 208, 0.04);
+            animation: fadeUp 1s ease-out 0.5s both;
+            transition: all 0.3s ease;
+        }
+
+        .credit-packs:hover {
+            border-color: rgba(64, 224, 208, 0.06);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .credit-packs h2 {
+            font-size: clamp(1.4rem, 2vw, 1.8rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            background: linear-gradient(145deg, #ffffff, #b8dae6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .credit-packs .sub {
+            color: #94b8c9;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .credit-free {
+            background: linear-gradient(135deg, #f2994a, #d97a2a);
+            border-radius: 8px;
+            padding: 0.875rem;
+            color: #0b1119;
+            margin-bottom: 1.25rem;
+        }
+
+        .credit-free h3 {
+            font-size: 1.25rem;
+            font-weight: 900;
+        }
+
+        .credit-free p {
+            font-weight: 800;
+            margin-top: 0.5rem;
+        }
+
+        .credit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .credit-item {
+            background: rgba(20, 36, 50, 0.3);
+            border-radius: 18px;
+            padding: 0.75rem;
+            text-align: center;
+            border: 1px solid rgba(64, 224, 208, 0.02);
+            transition: all 0.3s ease;
+        }
+
+        .credit-item:hover {
+            transform: translateY(-3px);
+            border-color: rgba(64, 224, 208, 0.06);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .credit-item h4 {
+            font-size: 0.8rem;
+            font-weight: 900;
+            color: #b0c8d8;
+        }
+
+        .credit-item .credits {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #e0edf2;
+            margin-top: 0.5rem;
+        }
+
+        .credit-item .price-tag {
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: #f2994a;
+            margin-top: 0.4rem;
+        }
+
+        .credit-how {
+            margin-top: 1.5rem;
+            color: #94b8c9;
+        }
+
+        .credit-how h3 {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #b0c8d8;
+        }
+
+        .credit-how .how-items {
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.7rem;
+            line-height: 1.35;
+        }
+
+        .credit-how .how-items .highlight {
+            font-weight: 600;
+            color: #f2994a;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (min-width: 768px) {
+            .navbar-links {
+                display: flex;
+            }
+            .navbar-mobile-toggle {
+                display: none;
+            }
+            .pricing-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: 1fr 0.9fr;
+            }
+        }
+
+        @media (max-width: 767px) {
+            body {
+                padding: 0.8rem;
+            }
+            .navbar {
+                padding: 0.5rem 1rem;
+                border-radius: 40px;
+                margin-bottom: 2rem;
+            }
+            .navbar-actions .btn-signin {
+                display: none;
+            }
+            .navbar-mobile-toggle {
+                display: block;
+            }
+            .slider-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.8rem;
+            }
+            .slider-readouts {
+                justify-content: space-between;
+            }
+            .slider-thumb {
+                width: 2.4rem;
+                height: 2.4rem;
+                font-size: 1rem;
+            }
+            .slider-track-wrap {
+                padding: 0 0.5rem;
+            }
+            .tick-marks-horizontal {
+                padding: 0 0.5rem;
+            }
+            .tick-marks-horizontal .tick {
+                font-size: 0.45rem;
+                min-width: 1.8rem;
+            }
+            .plan-card.featured .featured-badge {
+                font-size: 0.65rem;
+                padding: 0.25rem 0.75rem;
+            }
+            .credit-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- ===== NAVBAR ===== -->
+        <header class="navbar">
+            <a href="#" class="navbar-logo" aria-label="Woven home">
+                <div class="logo-icon"><i class="fas fa-circle-nodes"></i></div>
+                <span class="logo-text">woven</span>
+            </a>
+
+            <nav class="navbar-links" aria-label="Primary">
+                <a href="wovenHome.html" class="navbar-link">Product</a>
+                <a href="wovenFeatures.html" class="navbar-link">Features</a>
+                <a href="wovenPricing.html" class="navbar-link active">Pricing</a>
+            </nav>
+
+            <div class="navbar-actions">
+                <button class="btn-signin" type="button">Sign in</button>
+                <button class="btn-getstarted" type="button">Get Started</button>
+                <button class="navbar-mobile-toggle" type="button" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- ===== PRICING HERO ===== -->
+        <section class="pricing-hero">
+            <h1>
+                Pricing that scales<br />
+                <span class="highlight">with your impact.</span>
+            </h1>
+        </section>
+
+        <!-- ===== PRICING GRID ===== -->
+        <section class="pricing-plans">
+            <div class="pricing-grid">
+                <!-- LEFT: Slider + Plans -->
+                <div class="slider-section">
+                    <div class="slider-header">
+                        <h2>Choose your credits</h2>
+                        <div class="slider-readouts">
+                            <div class="readout-group">
+                                <div class="label">Credits</div>
+                                <div class="value credits" id="creditDisplay">500</div>
+                            </div>
+                            <div class="readout-group">
+                                <div class="label">Price</div>
+                                <div class="value" id="priceDisplay">₦49,000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Horizontal Slider -->
+                    <div class="slider-container">
+                        <div class="slider-track-wrap">
+                            <div class="slider-track" id="sliderTrack">
+                                <div class="slider-track-fill" id="trackFill"></div>
+
+                                <!-- Hidden range input -->
+                                <div class="slider-input-wrap">
+                                    <input type="range" id="creditSlider" min="0" max="100" value="25" step="1" />
+                                </div>
+
+                                <!-- Thumb -->
+                                <div class="slider-thumb" id="sliderThumb">
+                                    <i class="fas fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tick marks -->
+                        <div class="tick-marks-horizontal">
+                            <span class="tick" data-value="0">100</span>
+                            <span class="tick" data-value="0.25">500</span>
+                            <span class="tick" data-value="0.5">1000</span>
+                            <span class="tick" data-value="0.75">2500</span>
+                            <span class="tick" data-value="1">5000</span>
+                        </div>
+
+                        <!-- Weave animation -->
+                        <div class="weave-container">
+                            <span class="weave-dot"></span>
+                            <span class="weave-dot"></span>
+                            <span class="weave-dot"></span>
+                            <span class="weave-dot"></span>
+                            <span class="weave-dot"></span>
+                            <span class="weave-dot"></span>
+                            <span class="weave-dot"></span>
+                            <span class="weave-dot"></span>
+                            <span class="weave-label">weaving</span>
+                        </div>
+                    </div>
+
+                    <!-- Plans -->
+                    <div class="plans-list">
+                        <!-- Basic -->
+                        <article class="plan-card">
+                            <div class="plan-header">
+                                <h3>Basic</h3>
+                                <span class="price" id="basicPrice">₦29,000/mo</span>
+                            </div>
+                            <p class="plan-sub">Solopreneurs &amp; Startups</p>
+                            <ul class="plan-features">
+                                <li>5 Social Profiles</li>
+                                <li id="basicCredits">100 AI Credits/mo</li>
+                                <li>Basic Analytics</li>
+                            </ul>
+                            <div class="plan-action">
+                                <button class="btn-outline" type="button">Select Basic</button>
+                            </div>
+                        </article>
+
+                        <!-- Pro (Featured) -->
+                        <article class="plan-card featured">
+                            <div class="featured-badge">MOST POPULAR</div>
+                            <div class="plan-header">
+                                <h3>Pro</h3>
+                                <span class="price" id="proPrice">₦59,000/mo</span>
+                            </div>
+                            <p class="plan-sub">Professional Managers</p>
+                            <ul class="plan-features">
+                                <li>20 Social Profiles</li>
+                                <li id="proCredits">500 AI Credits/mo</li>
+                                <li>Advanced Audience Insights</li>
+                                <li>Priority Scheduling</li>
+                            </ul>
+                            <div class="plan-action">
+                                <button class="btn-solid" type="button">Select Pro</button>
+                            </div>
+                        </article>
+
+                        <!-- Agency -->
+                        <article class="plan-card">
+                            <div class="plan-header">
+                                <h3>Agency</h3>
+                                <span class="price" id="agencyPrice">₦99,000/mo</span>
+                            </div>
+                            <p class="plan-sub">Scaling Teams</p>
+                            <ul class="plan-features">
+                                <li>Unlimited Profiles</li>
+                                <li id="agencyCredits">2000 AI Credits/mo</li>
+                                <li>Custom White-label Reports</li>
+                            </ul>
+                            <div class="plan-action">
+                                <button class="btn-dark" type="button">Select Agency</button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Credit Packs -->
+                <aside class="credit-packs">
+                    <h2>Credit Packs</h2>
+                    <p class="sub">Pay-as-you-go. Credits never expire.</p>
+
+                    <div class="credit-free">
+                        <h3>Free Starter Tier</h3>
+                        <p>15 weekly credits (no cost)</p>
+                    </div>
+
+                    <div class="credit-grid">
+                        <div class="credit-item">
+                            <h4>Essential</h4>
+                            <p class="credits">50 Credits</p>
+                            <p class="price-tag">₦9,000</p>
+                        </div>
+                        <div class="credit-item">
+                            <h4>Growth</h4>
+                            <p class="credits">200 Credits</p>
+                            <p class="price-tag">₦29,000</p>
+                        </div>
+                        <div class="credit-item">
+                            <h4>Power</h4>
+                            <p class="credits">500 Credits</p>
+                            <p class="price-tag">₦49,000</p>
+                        </div>
+                        <div class="credit-item">
+                            <h4>Elite</h4>
+                            <p class="credits">1200 Credits</p>
+                            <p class="price-tag">₦99,000</p>
+                        </div>
+                    </div>
+
+                    <div class="credit-how">
+                        <h3>How Credits Work</h3>
+                        <div class="how-items">
+                            <p><span class="highlight">Purchase your pack</span><br />Credits added instantly.</p>
+                            <p><span class="highlight">Use on any action</span><br />1 credit per post, 5 for AI.</p>
+                            <p><span class="highlight">Lifetime Validity</span><br />Never expire.</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ===== SLIDER LOGIC =====
+            const slider = document.getElementById('creditSlider');
+            const trackFill = document.getElementById('trackFill');
+            const thumb = document.getElementById('sliderThumb');
+            const creditDisplay = document.getElementById('creditDisplay');
+            const priceDisplay = document.getElementById('priceDisplay');
+
+            // Plan references
+            const basicCredits = document.getElementById('basicCredits');
+            const proCredits = document.getElementById('proCredits');
+            const agencyCredits = document.getElementById('agencyCredits');
+            const basicPrice = document.getElementById('basicPrice');
+            const proPrice = document.getElementById('proPrice');
+            const agencyPrice = document.getElementById('agencyPrice');
+
+            // Currency formatter
+            const formatNaira = (amount) => {
+                return '₦' + Math.round(amount).toLocaleString();
+            };
+
+            function getCredits(value) {
+                const percent = value / 100;
+                const raw = Math.pow(percent, 1.2) * 5000;
+                return Math.round(raw);
+            }
+
+            function getPrice(credits) {
+                // Tiered pricing in Naira
+                if (credits <= 200) return 19000;
+                if (credits <= 800) return 49000;
+                if (credits <= 1500) return 79000;
+                return 99000;
+            }
+
+            function updateSlider(value) {
+                const percent = value / 100;
+                const trackWidth = percent * 100;
+                trackFill.style.width = trackWidth + '%';
+
+                // Position thumb
+                const track = document.getElementById('sliderTrack');
+                const trackRect = track.getBoundingClientRect();
+                const thumbOffset = percent * (trackRect.width - 20);
+                thumb.style.left = thumbOffset + 'px';
+
+                // Update credits
+                const credits = getCredits(value);
+                creditDisplay.textContent = credits.toLocaleString();
+
+                // Update price
+                const price = getPrice(credits);
+                priceDisplay.textContent = formatNaira(price);
+
+                // Update plans
+                updatePlans(credits, price);
+            }
+
+            function updatePlans(credits, price) {
+                // Basic: 50-200 credits
+                const basicAmount = Math.min(200, Math.max(50, credits * 0.4));
+                basicCredits.textContent = Math.round(basicAmount) + ' AI Credits/mo';
+                basicPrice.textContent = formatNaira(price * 0.5) + '/mo';
+
+                // Pro: 300-800 credits
+                const proAmount = Math.min(800, Math.max(300, credits * 0.7));
+                proCredits.textContent = Math.round(proAmount) + ' AI Credits/mo';
+                proPrice.textContent = formatNaira(price * 1.0) + '/mo';
+
+                // Agency: 1000-5000 credits
+                const agencyAmount = Math.min(5000, Math.max(1000, credits * 0.9));
+                agencyCredits.textContent = Math.round(agencyAmount) + ' AI Credits/mo';
+                agencyPrice.textContent = formatNaira(price * 1.8) + '/mo';
+            }
+
+            // Handle input
+            slider.addEventListener('input', function() {
+                const value = parseInt(this.value);
+                updateSlider(value);
+            });
+
+            // Click on track
+            const track = document.getElementById('sliderTrack');
+            track.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width;
+                const clamped = Math.max(0, Math.min(1, x));
+                const value = Math.round(clamped * 100);
+                slider.value = value;
+                updateSlider(value);
+            });
+
+            // Tick highlight
+            const ticks = document.querySelectorAll('.tick-marks-horizontal .tick');
+            slider.addEventListener('input', function() {
+                const value = parseInt(this.value);
+                ticks.forEach(tick => {
+                    const tickVal = parseFloat(tick.dataset.value);
+                    const isActive = value >= tickVal * 100 - 5;
+                    tick.classList.toggle('active', isActive);
+                });
+            });
+
+            // Initial state
+            updateSlider(25);
+            slider.dispatchEvent(new Event('input'));
+        });
+    </script>
+</body>
+</html>

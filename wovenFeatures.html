@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>re. · weave · animated features</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #080c14;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 1.5rem;
+            line-height: 1.4;
+            color: #eef2f8;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            margin-bottom: 3rem;
+            background: rgba(12, 22, 34, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 80px;
+            border: 1px solid rgba(64, 224, 208, 0.06);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .navbar-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-logo:hover {
+            transform: scale(1.02);
+        }
+
+        .navbar-logo .logo-icon {
+            width: 2.6rem;
+            height: 2.6rem;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #40e0d0, #f2994a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #0b1119;
+            box-shadow: 0 4px 16px rgba(64, 224, 208, 0.25);
+        }
+
+        .navbar-logo .logo-text {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            background: linear-gradient(145deg, #ffffff, #b8dae6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .navbar-links {
+            display: none;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .navbar-link {
+            position: relative;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #8a9bb5;
+            text-decoration: none;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            font-family: inherit;
+            transition: color 0.3s ease;
+            padding: 0.25rem 0;
+        }
+
+        .navbar-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #40e0d0, #f2994a);
+            transition: width 0.3s ease;
+        }
+
+        .navbar-link:hover {
+            color: #e0edf2;
+        }
+
+        .navbar-link:hover::after {
+            width: 100%;
+        }
+
+        .navbar-link.active {
+            color: #f2994a;
+        }
+
+        .navbar-link.active::after {
+            width: 100%;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-signin {
+            height: 2.4rem;
+            border-radius: 40px;
+            border: 1px solid rgba(64, 224, 208, 0.15);
+            background: transparent;
+            padding: 0 1.5rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #b0c8d8;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-signin:hover {
+            border-color: rgba(64, 224, 208, 0.4);
+            background: rgba(64, 224, 208, 0.05);
+            color: #e0f2f5;
+            transform: translateY(-2px);
+        }
+
+        .btn-getstarted {
+            height: 2.4rem;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #40e0d0, #2ab8a8);
+            padding: 0 1.5rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #0b1119;
+            border: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: inherit;
+            box-shadow: 0 4px 16px rgba(64, 224, 208, 0.2);
+        }
+
+        .btn-getstarted:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 28px rgba(64, 224, 208, 0.35);
+        }
+
+        .navbar-mobile-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: #b0c8d8;
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+
+        /* ===== FEATURES HERO ===== */
+        .features-hero {
+            max-width: 57.5rem;
+            margin: 0 auto 4rem;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .features-hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-weight: 900;
+            line-height: 1.03;
+            letter-spacing: -0.035em;
+            background: linear-gradient(145deg, #ffffff, #b8dae6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .features-hero h1 .highlight {
+            background: linear-gradient(135deg, #f2994a, #e67e22);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .features-hero p {
+            max-width: 47.5rem;
+            margin: 1.25rem auto 0;
+            font-size: clamp(1rem, 1.8vw, 1.28rem);
+            line-height: 1.35;
+            letter-spacing: 0.002em;
+            color: #94b8c9;
+        }
+
+        /* ===== AI CREATIVE CARDS ===== */
+        .ai-cards-section {
+            max-width: 80rem;
+            margin: 2rem auto 4rem;
+            padding: 0 1rem;
+        }
+
+        .ai-cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .ai-card {
+            min-height: 10rem;
+            border-radius: 1.5rem;
+            padding: 1.25rem 1.25rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(64, 224, 208, 0.04);
+        }
+
+        .ai-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .ai-card.light {
+            background: rgba(20, 36, 50, 0.25);
+            backdrop-filter: blur(4px);
+        }
+
+        .ai-card.light h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: #e0edf2;
+        }
+
+        .ai-card.light p {
+            margin-top: 0.6rem;
+            max-width: 28ch;
+            font-size: 0.875rem;
+            line-height: 1.3;
+            color: #94b8c9;
+        }
+
+        .ai-card.light .learn-link {
+            margin-top: auto;
+            padding-top: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #f2994a;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .ai-card.light .learn-link:hover {
+            color: #40e0d0;
+        }
+
+        .ai-card.dark {
+            background: linear-gradient(145deg, #1a234e, #131b3a);
+            border-color: rgba(64, 224, 208, 0.06);
+        }
+
+        .ai-card.dark h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.06;
+            letter-spacing: -0.03em;
+            color: #fff;
+        }
+
+        .ai-card.dark p {
+            margin-top: 0.6rem;
+            max-width: 30ch;
+            font-size: 0.875rem;
+            line-height: 1.3;
+            color: #c8d4ee;
+        }
+
+        .ai-card.dark .ai-image {
+            display: flex;
+            justify-content: center;
+            margin: 0.5rem auto 0;
+            width: 5.5rem;
+            height: 5.5rem;
+            border-radius: 16px;
+            background: rgba(64, 224, 208, 0.06);
+            align-items: center;
+            justify-content: center;
+            font-size: 2.4rem;
+            color: #40e0d0;
+        }
+
+        .ai-card.dark .learn-link {
+            margin-top: auto;
+            padding-top: 0.75rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #40e0d0;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .ai-card.dark .learn-link:hover {
+            color: #f2994a;
+        }
+
+        .ai-card.wide {
+            background: rgba(20, 36, 50, 0.2);
+            backdrop-filter: blur(4px);
+        }
+
+        .ai-card.wide h3 {
+            max-width: 18ch;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.06;
+            letter-spacing: -0.03em;
+            color: #e0edf2;
+        }
+
+        .ai-card.wide p {
+            margin-top: 0.6rem;
+            max-width: 44ch;
+            font-size: 0.875rem;
+            line-height: 1.3;
+            color: #94b8c9;
+        }
+
+        .ai-card.wide .learn-link {
+            margin-top: auto;
+            padding-top: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #f2994a;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .ai-card.wide .learn-link:hover {
+            color: #40e0d0;
+        }
+
+        /* ===== ANALYTICS & COLLAB (ANIMATED) ===== */
+        .analytics-section {
+            max-width: 80rem;
+            margin: 0 auto 4rem;
+            padding: 0 1rem;
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .analytics-content h2 {
+            max-width: 16ch;
+            font-size: clamp(1.55rem, 3.1vw, 2.55rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.08;
+            background: linear-gradient(145deg, #ffffff, #b8dae6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .analytics-content h2 .accent {
+            background: linear-gradient(135deg, #f2994a, #e67e22);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .analytics-content .desc {
+            margin-top: 1.75rem;
+            max-width: 52ch;
+            font-size: clamp(1rem, 0.98vw, 1.2rem);
+            line-height: 1.35;
+            color: #94b8c9;
+        }
+
+        .analytics-stats {
+            margin-top: 1.75rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 31.25rem;
+        }
+
+        .analytics-stats .label {
+            font-size: clamp(0.82rem, 0.95vw, 0.9rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #b0c8d8;
+        }
+
+        .analytics-stats .value {
+            margin-top: 0.5rem;
+            font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+            font-weight: 700;
+            line-height: 1;
+            color: #f2994a;
+            display: inline-block;
+            min-width: 4rem;
+        }
+
+        .analytics-card {
+            border-radius: 26px;
+            background: rgba(20, 36, 50, 0.25);
+            backdrop-filter: blur(4px);
+            padding: 1.25rem;
+            border: 1px solid rgba(64, 224, 208, 0.04);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .analytics-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(64, 224, 208, 0.08);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .analytics-card-inner {
+            border-radius: 2rem;
+            border: 6px solid rgba(64, 224, 208, 0.06);
+            background: rgba(8, 20, 30, 0.3);
+            padding: 2.5rem 1.75rem;
+            box-shadow: 0 4px 0 rgba(64, 224, 208, 0.05);
+        }
+
+        .analytics-card-inner .score-label {
+            font-size: clamp(0.84rem, 1vw, 0.92rem);
+            font-weight: 500;
+            color: #b0c8d8;
+        }
+
+        .analytics-card-inner .score-value {
+            margin-top: 0.5rem;
+            font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+            font-weight: 700;
+            line-height: 1;
+            color: #f2994a;
+            display: inline-block;
+            min-width: 5rem;
+        }
+
+        .analytics-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            height: 5.5rem;
+            padding-bottom: 0.25rem;
+        }
+
+        .analytics-bars .bar {
+            width: 1.75rem;
+            border-radius: 4px 4px 0 0;
+            transition: height 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-origin: bottom;
+            position: relative;
+            min-height: 0.5rem;
+        }
+
+        .analytics-bars .bar.dark {
+            background: linear-gradient(180deg, #40e0d0, #2a9a8e);
+        }
+
+        .analytics-bars .bar.orange {
+            background: linear-gradient(180deg, #f2994a, #d97a2a);
+        }
+
+        .analytics-bars .bar::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .analytics-bars .bar:hover::after {
+            opacity: 1;
+        }
+
+        /* Collaboration Banner */
+        .collab-banner {
+            margin-top: 2.5rem;
+            border-radius: 34px;
+            background: linear-gradient(145deg, #1a234e, #131b3a);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(64, 224, 208, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .collab-banner:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .collab-banner h3 {
+            font-size: clamp(1.55rem, 2.9vw, 2.35rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            color: #fff;
+        }
+
+        /* ===== UNIFIED CALENDAR ===== */
+        .calendar-section {
+            max-width: 80rem;
+            margin: 0 auto 4rem;
+            padding: 0 1rem;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .calendar-content h2 {
+            max-width: 17ch;
+            font-size: clamp(1.8rem, 4.1vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            background: linear-gradient(145deg, #ffffff, #b8dae6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .calendar-content .desc {
+            margin-top: 1.75rem;
+            max-width: 70ch;
+            font-size: clamp(0.9rem, 1.25vw, 1.1rem);
+            line-height: 1.35;
+            color: #94b8c9;
+        }
+
+        .calendar-features {
+            margin-top: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .calendar-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            font-size: clamp(0.95rem, 1.35vw, 1.22rem);
+            font-weight: 600;
+            color: #e0edf2;
+            list-style: none;
+        }
+
+        .calendar-features li .dot {
+            margin-top: 0.45em;
+            width: 0.375rem;
+            height: 0.375rem;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: #40e0d0;
+        }
+
+        .calendar-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 1.5rem;
+            background: rgba(20, 36, 50, 0.2);
+            border: 1px solid rgba(64, 224, 208, 0.04);
+            padding: 2rem;
+            min-height: 16rem;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-image:hover {
+            transform: translateY(-3px);
+            border-color: rgba(64, 224, 208, 0.08);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .calendar-image .placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: #40e0d0;
+            font-size: 3rem;
+        }
+
+        .calendar-image .placeholder span {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #94b8c9;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (min-width: 768px) {
+            .navbar-links {
+                display: flex;
+            }
+            .navbar-mobile-toggle {
+                display: none;
+            }
+            .ai-cards-grid {
+                grid-template-columns: 0.92fr 1fr 1.12fr;
+            }
+            .analytics-grid {
+                grid-template-columns: 1fr 1.22fr;
+            }
+            .calendar-grid {
+                grid-template-columns: 1.35fr 0.9fr;
+            }
+            .analytics-card-inner {
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-between;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            body {
+                padding: 0.8rem;
+            }
+            .navbar {
+                padding: 0.5rem 1rem;
+                border-radius: 40px;
+                margin-bottom: 2rem;
+            }
+            .navbar-actions .btn-signin {
+                display: none;
+            }
+            .navbar-mobile-toggle {
+                display: block;
+            }
+            .ai-card.dark .ai-image {
+                width: 4rem;
+                height: 4rem;
+                font-size: 1.8rem;
+            }
+            .analytics-bars .bar {
+                width: 1.2rem;
+            }
+            .calendar-image {
+                min-height: 12rem;
+            }
+            .analytics-bars {
+                height: 4rem;
+            }
+        }
+
+        @media (max-width: 1024px) and (min-width: 768px) {
+            .ai-cards-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .ai-card.wide {
+                grid-column: span 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- ===== NAVBAR ===== -->
+        <header class="navbar">
+            <a href="wovenHome.html" class="navbar-logo" aria-label="Woven home">
+                <div class="logo-icon"><i class="fas fa-circle-nodes"></i></div>
+                <span class="logo-text">woven</span>
+            </a>
+
+            <nav class="navbar-links" aria-label="Primary">
+                <a href="wovenHome.html" class="navbar-link">Product</a>
+                <a href="wovenFeatures.html" class="navbar-link active">Features</a>
+                <a href="wovenPricing.html" class="navbar-link">Pricing</a>
+            </nav>
+
+            <div class="navbar-actions">
+                <button class="btn-signin" type="button">Sign in</button>
+                <button class="btn-getstarted" type="button">Get Started</button>
+                <button class="navbar-mobile-toggle" type="button" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- ===== FEATURES HERO ===== -->
+        <section class="features-hero">
+            <h1>
+                Crafted for Clarity.<br />
+                Designed for <span class="highlight">Connection</span>
+            </h1>
+            <p>
+                Step into an editorial social management experience. We've replaced the
+                chaos of standard tools with the intentionality of a master loom.
+            </p>
+        </section>
+
+        <!-- ===== AI CREATIVE CARDS ===== -->
+        <section class="ai-cards-section">
+            <div class="ai-cards-grid">
+                <article class="ai-card light">
+                    <h3>Smart Tags</h3>
+                    <p>Reach your niche with AI-curated hashtags that actually work.</p>
+                    <span class="learn-link">Learn about Woven AI →</span>
+                </article>
+
+                <article class="ai-card dark">
+                    <h3>Caption Gen</h3>
+                    <p>Context-aware copy that sounds like your brand, not a bot.</p>
+                    <div class="ai-image"><i class="fas fa-brain"></i></div>
+                    <span class="learn-link">Learn about Woven AI →</span>
+                </article>
+
+                <article class="ai-card wide">
+                    <h3>Ignite your voice with the AI Creative Studio</h3>
+                    <p>
+                        Writer's block is a relic of the past. Woven's AI learns your unique
+                        tone and helps craft captions, threads, and tags that resonate.
+                    </p>
+                    <span class="learn-link">Learn about Woven AI →</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- ===== ANALYTICS & COLLAB (ANIMATED) ===== -->
+        <section class="analytics-section">
+            <div class="analytics-grid">
+                <div class="analytics-content">
+                    <h2>
+                        Clarity through consolidated <span class="accent">Analytics</span>
+                    </h2>
+                    <p class="desc">
+                        One dashboard, infinite insights. Track your growth,
+                        engagement, and ROI across all platforms without switching tabs.
+                    </p>
+                    <div class="analytics-stats">
+                        <div>
+                            <p class="label">GROWTH</p>
+                            <p class="value counter" data-target="24">0%</p>
+                        </div>
+                        <div>
+                            <p class="label">IMPACT</p>
+                            <p class="value counter" data-target="92">0%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analytics-card">
+                    <div class="analytics-card-inner">
+                        <div>
+                            <p class="score-label">ENGAGEMENT SCORE</p>
+                            <p class="score-value counter" data-target="84.2">0.0</p>
+                        </div>
+                        <div class="analytics-bars" id="chartBars">
+                            <span class="bar dark" style="height: 0.5rem;" data-height="2.25"></span>
+                            <span class="bar orange" style="height: 0.5rem;" data-height="3.5"></span>
+                            <span class="bar dark" style="height: 0.5rem;" data-height="3"></span>
+                            <span class="bar dark" style="height: 0.5rem;" data-height="5"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collaboration Banner -->
+            <div class="collab-banner">
+                <h3>
+                    Collaborate in real-time.<br />
+                    Review with precision.
+                </h3>
+            </div>
+        </section>
+
+        <!-- ===== UNIFIED CALENDAR ===== -->
+        <section class="calendar-section">
+            <div class="calendar-grid">
+                <div class="calendar-content">
+                    <h2>Master your rhythm with the Unified Content Calendar</h2>
+                    <p class="desc">
+                        Ditch the fragmented views. Our drag-and-drop canvas lets you
+                        visualize your brand's narrative across every platform in one
+                        seamless interface.
+                    </p>
+                    <ul class="calendar-features">
+                        <li><span class="dot"></span> Fluid drag-and-drop scheduling</li>
+                        <li><span class="dot"></span> Visual cross-platform storyboarding</li>
+                    </ul>
+                </div>
+
+                <div class="calendar-image">
+                    <div class="placeholder">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Unified Calendar</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // ===== ANIMATION ENGINE =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate counters
+            const counters = document.querySelectorAll('.counter');
+
+            counters.forEach(counter => {
+                const target = parseFloat(counter.dataset.target);
+                const isFloat = target % 1 !== 0;
+                const duration = 1800;
+                const startTime = performance.now();
+
+                function updateCounter(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+
+                    // Ease out cubic
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = eased * target;
+
+                    if (isFloat) {
+                        counter.textContent = current.toFixed(1) + (counter.textContent.includes('%') ? '%' : '');
+                    } else {
+                        counter.textContent = Math.round(current) + (counter.textContent.includes('%') ? '%' : '');
+                    }
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        // Final value
+                        if (isFloat) {
+                            counter.textContent = target.toFixed(1) + (counter.textContent.includes('%') ? '%' : '');
+                        } else {
+                            counter.textContent = Math.round(target) + (counter.textContent.includes('%') ? '%' : '');
+                        }
+                    }
+                }
+
+                // Start with a small delay for staggered effect
+                setTimeout(() => {
+                    requestAnimationFrame(updateCounter);
+                }, 300);
+            });
+
+            // Animate bars
+            const bars = document.querySelectorAll('.analytics-bars .bar');
+
+            bars.forEach((bar, index) => {
+                const targetHeight = parseFloat(bar.dataset.height);
+                // Convert to rem
+                const targetRem = targetHeight;
+
+                setTimeout(() => {
+                    bar.style.height = targetRem + 'rem';
+                }, 400 + index * 150);
+            });
+
+            // Re-animate on scroll with Intersection Observer
+            const analyticsSection = document.querySelector('.analytics-section');
+            let hasAnimated = false;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasAnimated) {
+                        hasAnimated = true;
+
+                        // Reset bars
+                        bars.forEach(bar => {
+                            bar.style.height = '0.5rem';
+                        });
+
+                        // Re-animate bars
+                        bars.forEach((bar, index) => {
+                            const targetHeight = parseFloat(bar.dataset.height);
+                            setTimeout(() => {
+                                bar.style.height = targetHeight + 'rem';
+                            }, 400 + index * 150);
+                        });
+
+                        // Re-animate counters
+                        counters.forEach((counter, idx) => {
+                            const target = parseFloat(counter.dataset.target);
+                            const isFloat = target % 1 !== 0;
+                            const duration = 1800;
+                            const startTime = performance.now();
+
+                            function updateCounterAgain(currentTime) {
+                                const elapsed = currentTime - startTime;
+                                const progress = Math.min(elapsed / duration, 1);
+                                const eased = 1 - Math.pow(1 - progress, 3);
+                                const current = eased * target;
+
+                                if (isFloat) {
+                                    counter.textContent = current.toFixed(1) + (counter.textContent.includes('%') ? '%' :
+                                    '');
+                                } else {
+                                    counter.textContent = Math.round(current) + (counter.textContent.includes('%') ? '%' :
+                                        '');
+                                }
+
+                                if (progress < 1) {
+                                    requestAnimationFrame(updateCounterAgain);
+                                } else {
+                                    if (isFloat) {
+                                        counter.textContent = target.toFixed(1) + (counter.textContent.includes('%') ? '%' :
+                                            '');
+                                    } else {
+                                        counter.textContent = Math.round(target) + (counter.textContent.includes('%') ? '%' :
+                                            '');
+                                    }
+                                }
+                            }
+
+                            setTimeout(() => {
+                                requestAnimationFrame(updateCounterAgain);
+                            }, 200 + idx * 100);
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(analyticsSection);
+        });
+    </script>
+</body>
+</html>
